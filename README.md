@@ -2,21 +2,26 @@
 
 # Taller: Paso de parámetros con go_router
 
-Este ejemplo muestra cómo pasar parámetros entre pantallas usando [go_router](https://pub.dev/packages/go_router) en Flutter.
+Este taller lo desarrollé como estudiante de 8º semestre de Ingeniería de Sistemas con el objetivo de entender y practicar el enrutamiento declarativo en Flutter y el paso de datos entre pantallas utilizando `go_router`.
+
+## Objetivos
+- Configurar `go_router` en un proyecto Flutter.
+- Implementar dos rutas: Home (`/`) y Detail (`/detail/:id`).
+- Pasar parámetros usando:
+  - Parámetro de ruta (`:id`).
+  - Objeto `extra` al navegar.
+
+## Tecnologías
+- Flutter (Material 3)
+- Paquete: [go_router](https://pub.dev/packages/go_router)
 
 ## Rutas
 - `/` → `HomePage`
 - `/detail/:id` → `DetailPage`
+  - Ejemplo: `/detail/7`
+  - Navegación con extra: `context.go('/detail/7', extra: {'name': 'Item 7'})`
 
-Se demuestran dos formas de paso de datos:
-- Parámetro en la ruta (`:id`), e.g. `/detail/7`.
-- `extra` (objeto) al navegar: `context.go('/detail/7', extra: {'name': 'Item 7'})`.
-
-## Requisitos
-- Flutter SDK instalado
-- Dart SDK acorde al proyecto
-
-## Instalación
+## Cómo correrlo
 ```bash
 flutter pub get
 flutter run
@@ -31,12 +36,17 @@ lib/
     detail_page.dart
 ```
 
-## Notas
-- Asegúrate de tener en `pubspec.yaml`:
-
+## Notas técnicas
+- `pubspec.yaml` incluye:
 ```yaml
 dependencies:
   go_router: ^14.2.0
 ```
 
-- Si ya había configuración previa en `pubspec.yaml`, esta PR solo agrega la dependencia sin tocar el resto de la configuración.
+## Cómo generé las “capturas” sin compilar localmente
+Mediante pruebas “golden” en CI. El flujo genera imágenes PNG de las pantallas y las sube como artefacto descargable en la pestaña “Actions”.
+
+## Lecciones aprendidas
+- `go_router` simplifica rutas anidadas y parámetros.
+- `extra` es útil para pasar objetos sin exponerlos en la URL.
+- Las pruebas “golden” documentan visualmente sin emulador local.
